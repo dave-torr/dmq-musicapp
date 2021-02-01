@@ -1,0 +1,27 @@
+.mainBTNCont{    
+    text-align: center;
+    border-top: dotted 2px black;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.BTNtag{
+    font-size: 1.7em;
+    padding: 21px;
+    width: 50%;
+    border-right: dotted 2px black;
+}
+
+
+.unavailData{
+    font-size: 1.2em;
+    padding: 21px;
+    width: 50%;
+}
+.availData{
+    text-transform: capitalize;
+    width: 50%;
+    font-size: 1.2em;
+    padding: 21px;
+}

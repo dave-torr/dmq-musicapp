@@ -11,7 +11,8 @@ import { useState } from 'react'
 
 export default function Home() {
 
-  const [bandData, setBandData] = useState(false)
+  const [bandData, setBandData] = useState(true)
+  const [userData, setUserData] = useState(true)
 
 
 const testerFunct=()=>{
@@ -24,9 +25,6 @@ const testerFunct=()=>{
         <title>El Sonido de Quito - App</title>
       </Head>
 
-
-
-
       <main className={styles.main}>
         <div className={styles.welcomeContainerGeneral}>
           
@@ -36,33 +34,55 @@ const testerFunct=()=>{
             <div className={styles.blueTitle}> quito </div>
           </div>
 
+          <div className={styles.slogan}>
+          "Asi suena mi distrito"
+          </div>
+
           <div className={styles.BTNCont}>
             {bandData? 
-            <>
-            <Link href="/listado">
-              <a>
-                <MainBTN 
-                  btnTag={"Listado de Bandas"}
-                  btnAction={testerFunct}
-                />
-              </a>
-            </Link>
-            </>:<>
-                <MainBTN 
-                  btnTag={"Listado de Bandas"}
-                  boolController={bandData}
-                />
-            </>
-            }
-
+              <>
+              <Link href="/bandas">
+                <a>
+                  <MainBTN 
+                    btnTag={"Listado de Bandas"}
+                    btnAction={testerFunct}
+                    availData={"Acceder Base de Datos"}
+                  />
+                </a>
+              </Link>
+              </>
+              :<>
+                  <MainBTN 
+                    btnTag={"Listado de Bandas"}
+                    boolController={bandData}
+                    unavailData={"recopilando informacion"}
+                  />
+              </>
+              }
+            {userData? 
+              <>
+              <Link href="/anadir">
+                <a>
+                  <MainBTN 
+                    btnTag={"Añadir Banda"}
+                    availData={"Hola Jay!"}
+                  />
+                </a>
+              </Link>
+              </>
+              :<>
+                  <MainBTN 
+                    btnTag={"Añadir Banda"}
+                    boolController={userData}
+                    unavailData={"Por favor registrarse"}
+                  />
+              </>
+              }
 
           </div>
         </div>
-
-        
-
-
       </main>
+      
       <footer className={styles.footer}>
 
       </footer>

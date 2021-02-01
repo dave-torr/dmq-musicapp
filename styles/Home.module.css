@@ -17,6 +17,14 @@
   width: 100%;
   display: flex;
   flex-direction: column;
+}
+
+.slogan{
+  text-align: center;
+  margin: 21px;
+  font-style: italic;
+  font-size: 1.3em;
+  font-family: "Times New Roman", Times, serif;
 
 }
 
