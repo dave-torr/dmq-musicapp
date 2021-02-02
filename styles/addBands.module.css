@@ -1,0 +1,78 @@
+.addBandPage{
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.generalInputCont{
+    width: 600px;
+    border: solid 1px black;
+    box-shadow: 6px 6px 0px black;
+}
+
+.dataInputs{
+    border-bottom: dotted 2px black;
+    padding: 21px;
+    text-transform: capitalize;
+}
+
+.aDropDown{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 40%;
+}
+
+.textInput{
+    margin: 10px 0px;
+}
+
+.stepControllers{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.aStepController{
+    margin: 6px;
+    padding: 6px;
+    border: solid 2px black;
+    transition: all ease-in 0.5s;
+}
+
+.aStepController:hover{
+    cursor: pointer;
+    background-color: black;
+    color: white;
+}
+
+.summaryCont{
+    padding: 21px;
+}
+
+.submitCont{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.submitBandBTN{
+    border-right: solid 4px red;
+    border-bottom: solid 4px blue;
+    padding: 15px;
+    margin: 15px;
+    transition: all ease-in 0.5s;
+}
+
+.submitBandBTN:hover{
+    background-color: black;
+    color: white;
+}
+
+@media (max-width: 600px) {
+    .generalInputCont{
+        width: 100%;
+    }
+}
