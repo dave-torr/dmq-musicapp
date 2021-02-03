@@ -1,4 +1,4 @@
-import styles from "../styles/Buttons.module.css"
+import styles from "../styles/misc.module.css"
 
 function MainBTN(props){
 

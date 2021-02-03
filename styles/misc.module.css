@@ -1,3 +1,20 @@
+.generalNavCont{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    /* background-color: hotpink; */
+    width: 600px;
+    margin: 18px;
+}
+
+.navBTN{
+    border: solid 3px blue;
+    padding: 6px;
+    width: 90px;
+    text-align: center;
+    box-shadow: 4px 4px 0px crimson;
+}
+
 .mainBTNCont{    
     text-align: center;
     border-top: dotted 2px black;

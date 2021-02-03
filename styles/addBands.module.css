@@ -2,7 +2,7 @@
     width: 100%;
     min-height: 100vh;
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
     flex-direction: column;
 }
@@ -112,6 +112,17 @@
     padding: 21px;
 }
 
+.aBandSummaryElemCont{
+    display: flex;
+    flex-direction: row;
+}
+
+.bandExpander{
+    border: solid 2px grey;
+    text-align: center;
+    padding: 4px;
+}
+
 .submitCont{
     width: 100%;
     display: flex;
@@ -129,6 +140,7 @@
 .submitBandBTN:hover{
     background-color: black;
     color: white;
+    cursor: pointer;
 }
 
 @media (max-width: 600px) {

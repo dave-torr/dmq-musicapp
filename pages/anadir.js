@@ -1,25 +1,29 @@
 import { useEffect, useState } from "react"
+import { useRouter } from 'next/router'
 
+import {NavBar} from "./../components/menus"
 
 import styles from "./../styles/addBands.module.css"
 import BarriosDMQ from "./../data/adminZonalDMQ.json"
 
 export default function Anadir(){
+    const router = useRouter()
+
     const [inputStep, setInputStep]= useState(0)
     const [aBandRegistry, setBandRegistry] = useState({
-        "bandName": String,
-        "yearStarted": Number,
+        "bandName": null,
+        "yearStarted": null,
         "location": {
-            "parroquia": String,
-            "barrio": String,
-            "detalleAdicional": String,
+            "parroquia": null,
+            "barrio": null,
+            "detalleAdicional": null,
             },
         "bandMembers": [],
         "musicoMayor": {
-            "name": String,
-            "age": Number,
-            "occupation": String,
-            "yearsInRole": Number,
+            "name": null,
+            "age": null,
+            "occupation": null,
+            "yearsInRole": null,
             },
         "active": true
         })
@@ -70,7 +74,7 @@ export default function Anadir(){
                     <div className={styles.textInput}>
                         <label style={{width:"160px", textAlign:"end", paddingRight: "12px"}} 
                         htmlFor="barrioTextInput"> Barrio: </label>
-                        <input id="barrioTextInput" type="text" onChange={(e)=>{
+                        <input id="barrioTextInput" type="text" placeholder={aBandRegistry.location.barrio} onChange={(e)=>{
                             setBandRegistry({
                                 ...aBandRegistry,
                                 "location":{
@@ -81,7 +85,7 @@ export default function Anadir(){
                     <div className={styles.textInput}>
                         <label style={{width:"160px", textAlign:"end", paddingRight: "12px"}} 
                         htmlFor="addiDetailTextInput"> Detalles Adicionales: </label>
-                        <input id="addiDetailTextInput" type="text" onChange={(e)=>{
+                        <input id="addiDetailTextInput" type="text" placeholder={aBandRegistry.location.detalleAdicional} onChange={(e)=>{
                             setBandRegistry({
                                 ...aBandRegistry,
                                 "location":{
@@ -155,7 +159,7 @@ export default function Anadir(){
                 <div className={styles.anInputWLabel}> 
                     <label className={styles.inputLabel} htmlFor="musicoMayorName"> 
                         Nombre: {""}</label>                
-                        <input type="text" id="musicoMayorName" onChange={(e)=>{
+                        <input placeholder={aBandRegistry.musicoMayor.name} type="text" id="musicoMayorName" onChange={(e)=>{
                             setBandRegistry({
                             ...aBandRegistry,
                             "musicoMayor":{
@@ -166,7 +170,7 @@ export default function Anadir(){
                 <div className={styles.anInputWLabel}> 
                     <label className={styles.inputLabel} htmlFor="musicoMayorOccupation"> 
                         Ocupacion: {""}</label>                
-                        <input type="text" id="musicoMayorOccupation" onChange={(e)=>{
+                        <input placeholder={aBandRegistry.musicoMayor.occupation} type="text" id="musicoMayorOccupation" onChange={(e)=>{
                             setBandRegistry({
                             ...aBandRegistry,
                             "musicoMayor":{
@@ -177,7 +181,7 @@ export default function Anadir(){
                 <div className={styles.anInputWLabel}> 
                     <label className={styles.inputLabel} htmlFor="musicoMayorCareer"> 
                         Tiempo en rol: {""}</label>                
-                        <input type="number" id="musicoMayorCareer" onChange={(e)=>{
+                        <input placeholder={aBandRegistry.musicoMayor.yearsInRole} type="number" id="musicoMayorCareer" onChange={(e)=>{
                             setBandRegistry({
                             ...aBandRegistry,
                             "musicoMayor":{
@@ -188,7 +192,7 @@ export default function Anadir(){
                 <div className={styles.anInputWLabel}> 
                     <label className={styles.inputLabel} htmlFor="musicoMayorAge"> 
                         Edad: {""}</label>                
-                        <input type="number" id="musicoMayorAge" onChange={(e)=>{
+                        <input placeholder={aBandRegistry.musicoMayor.age} type="number" id="musicoMayorAge" onChange={(e)=>{
                             setBandRegistry({
                             ...aBandRegistry,
                             "musicoMayor":{
@@ -203,13 +207,12 @@ export default function Anadir(){
 
 // MBand member data
     const [aBandMember, setABandMember]=useState({
-            "name": String,
-            "instrument": String,
-            "occupation": String,
-            "age": String,
+            "name": null,
+            "instrument": null,
+            "occupation": null,
+            "age": null,
     })
     const [bandMemberController, setbandMemberController]=useState(false)
-    console.log("aBandMember", aBandMember)
     const bandMembersInputFunc=()=>{
         return(
             <>
@@ -224,9 +227,6 @@ export default function Anadir(){
                     <div className={styles.addMusicianBTN} onClick={()=>{
                         setbandMemberController(true) }}> 
                         añadir musico &#9835; </div> </>}
-                    
-
-
                     {bandMemberController&&
                     <>
                     <div className={styles.anInputWLabel}> 
@@ -276,10 +276,10 @@ export default function Anadir(){
                             "bandMembers": [...aBandRegistry.bandMembers, aBandMember]
                         });
                         setABandMember({
-                            "name": String,
-                            "instrument": String,
-                            "occupation": String,
-                            "age": String,
+                            "name": null,
+                            "instrument": null,
+                            "occupation": null,
+                            "age": null,
                         });
                         setbandMemberController(false)
                     }}> Añadir! </div>
@@ -290,10 +290,112 @@ export default function Anadir(){
     }
 
 // SUMMARY
+    const [expandBandList, setBandExpander]=useState(false)
     const inputSummary=()=>{
         return(
             <>
-                <h1 className={styles.summaryTitle}> Datos de Banda: </h1>
+                <h2> Resumen </h2>
+                {summElemDisp1(aBandRegistry.bandName, "Nombre de Banda", aBandRegistry.bandName)}
+                {summElemDisp1(aBandRegistry.yearStarted, "Año Inicio", aBandRegistry.yearStarted)}
+                {summElemDisp2(aBandRegistry.location, "Locación", aBandRegistry.location)}
+                {summElemDisp3(aBandRegistry.musicoMayor, "Musico Mayor", aBandRegistry.musicoMayor)}
+                {musiciansDisplay(aBandRegistry.bandMembers, "Miembros de Banda", aBandRegistry.bandMembers)}
+            </>
+        )
+    }
+
+    const summElemDisp1=(controller, title, data)=>{
+        return(
+            <>
+                {controller&&
+                    <>
+                    <div className={styles.aBandSummaryElemCont}>
+                        <div className={styles.inputLabel}> <strong> {title}: </strong> </div>
+                        <div className={styles.summaryElementData}> {data} </div>
+                    </div>
+                </>}
+            </>
+        )
+    }
+    const summElemDisp2=(controller, title, data)=>{
+        return(
+            <>
+                {controller.parroquia&&
+                    <>
+                    <div className={styles.aBandSummaryElemCont}>
+                        <div className={styles.inputLabel}> <strong> {title}: </strong></div>
+                        <div style={{display:"flex", flexDirection:"column"}}>
+                            {data.parroquia&&<>
+                                <div className={styles.summaryElementData}> <strong> Parroquia: </strong> {data.parroquia} </div></>}
+                            {data.barrio&&<>
+                                <div className={styles.summaryElementData}> <strong> Barrio: </strong> {data.barrio} </div></>}
+                            {data.detalleAdicional&&<>
+                                <div className={styles.summaryElementData}> <strong> Adicional: </strong> {data.detalleAdicional} </div></>}
+                        </div>
+                    </div>
+                </>}
+            </>
+        )
+    }
+    const summElemDisp3=(controller, title, data)=>{
+        return(
+            <>
+                {controller.name&&
+                    <>
+                    <div className={styles.aBandSummaryElemCont}>
+                        <div className={styles.inputLabel}> <strong> {title}: </strong></div>
+                        <div style={{display:"flex", flexDirection:"column"}}>
+                            {data.name&&<>
+                                <div className={styles.summaryElementData}> <strong> Nombre: </strong> {data.name} </div></>}
+                            {data.occupation&&<>
+                                <div className={styles.summaryElementData}> <strong> Ocupación: </strong> {data.occupation} </div></>}
+                            {data.yearsInRole&&<>
+                                <div className={styles.summaryElementData}> <strong> Años de director: </strong> {data.yearsInRole} </div></>}
+                            {data.age&&<>
+                                <div className={styles.summaryElementData}> <strong> Edad: </strong> {data.age} </div></>}
+                        </div>
+                    </div>
+                </>}
+            </>
+        )
+    }
+    const musiciansDisplay=(controller, title, data)=>{
+        let eachMusician=aBandRegistry.bandMembers.map((elem, i)=>
+            <> 
+                <div style={{display:"flex", flexDirection:"column"}}>
+                    <div>_______________________________ </div>
+                    <strong> Integrante {i+1} </strong>
+                    {elem.name&&<>
+                        <div className={styles.summaryElementData}> <strong> Nombre: </strong> {elem.name} </div></>}
+                    {elem.instrument&&<>
+                        <div className={styles.summaryElementData}> <strong> Instrumento: </strong> {elem.instrument} </div></>}
+                    {elem.occupation&&<>
+                        <div className={styles.summaryElementData}> <strong> Ocupación: </strong> {elem.occupation} </div></>}
+                    {elem.age&&<>
+                        <div className={styles.summaryElementData}> <strong> Edad: </strong> {data.age} </div></>}
+                </div>
+            </>)
+        return(
+            <>
+            {controller.length>0&&
+                <>
+                    <div className={styles.aBandSummaryElemCont}>
+                        <div className={styles.inputLabel}> <strong> {title}: </strong></div>
+                            <div style={{display:"flex", flexDirection:"column"}}>
+                                <div> Numero de Integrantes: 
+                                <strong>{" "}{aBandRegistry.bandMembers.length}</strong></div> 
+                                
+                                {expandBandList?<>
+                                <div className={styles.bandExpander} onClick={()=> setBandExpander(false)}> Colapsar </div>
+                                </> : <>
+                                <div className={styles.bandExpander} onClick={()=> setBandExpander(true)}> Expander </div>
+                                </>}
+                                {expandBandList&&<>
+                                    {eachMusician} </>}
+                            </div>
+                    </div>
+
+                </>}
             </>
         )
     }
@@ -310,6 +412,7 @@ export default function Anadir(){
                     })
                     const bandRegistration = await res.json()
                     console.log("bandRegistration", bandRegistration)
+                    router.push('/')
                 }}> 
                 Agregar a base de datos </div>
         )
@@ -320,6 +423,7 @@ console.log("Band Reg", aBandRegistry)
     return(
         <>
             <div className={styles.addBandPage}>
+                <NavBar />
                 <div className={styles.generalInputCont}>
 
 
@@ -337,8 +441,9 @@ console.log("Band Reg", aBandRegistry)
                     {nextPrevStep()}
                     <div className={styles.summaryCont}>
                         {inputSummary()}</div>
-                    <div className={styles.submitCont}>
-                        {submitData()}</div>
+                    {inputStep===3&&
+                        <><div className={styles.submitCont}>
+                            {submitData()}</div></>}
                 </div>
             </div>
         </>
