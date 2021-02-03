@@ -6,27 +6,87 @@
     align-items: center;
     flex-direction: column;
 }
+
 .generalInputCont{
     width: 600px;
     border: solid 1px black;
     box-shadow: 6px 6px 0px black;
 }
 
+.radios{
+    border-bottom: solid 2px black;
+    padding: 9px;
+}
+
+.barrioType{
+    width: 160px;
+    text-align: end;
+    padding-right: 12px;
+}
 .dataInputs{
     border-bottom: dotted 2px black;
     padding: 21px;
     text-transform: capitalize;
+    min-height: 340px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
 }
 
 .aDropDown{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
-    min-width: 40%;
+    width: fit-content;
+    margin-bottom: 12px;
 }
 
 .textInput{
     margin: 10px 0px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+
+}
+
+.barrioPickers{
+    margin-left: 6px;
+}
+
+.musicoMayorCont{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.anInputWLabel{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 12px;   
+}
+
+.inputLabel{
+    width: 160px;
+    text-align: end;
+    padding-right: 12px;
+}
+
+.addMusicianBTN{
+    text-align: center;
+    margin-top: 21px;
+    color: grey;
+    border: solid 2px grey;
+}
+
+.confirmMuscBTN{
+    margin-top: 12px;
+    padding: 6px;
+    width: fit-content;
+    color: grey;
+    border: solid 2px grey;
 }
 
 .stepControllers{
