@@ -294,7 +294,8 @@ export default function Anadir(){
     const inputSummary=()=>{
         return(
             <>
-                <h2> Resumen </h2>
+                {aBandRegistry.bandName&&
+                    <> <h2> Resumen </h2> </>}
                 {summElemDisp1(aBandRegistry.bandName, "Nombre de Banda", aBandRegistry.bandName)}
                 {summElemDisp1(aBandRegistry.yearStarted, "Año Inicio", aBandRegistry.yearStarted)}
                 {summElemDisp2(aBandRegistry.location, "Locación", aBandRegistry.location)}
@@ -359,12 +360,20 @@ export default function Anadir(){
             </>
         )
     }
+    const eliminateMusician=(index, membersArray)=>{
+        let newArr = [...membersArray];
+        newArr.splice(index, 1);
+        setBandRegistry({
+            ...aBandRegistry,
+            "bandMembers": newArr
+        })
+    }
     const musiciansDisplay=(controller, title, data)=>{
         let eachMusician=aBandRegistry.bandMembers.map((elem, i)=>
             <> 
                 <div style={{display:"flex", flexDirection:"column"}}>
                     <div>_______________________________ </div>
-                    <strong> Integrante {i+1} </strong>
+                    <strong> Integrante {i+1} </strong> 
                     {elem.name&&<>
                         <div className={styles.summaryElementData}> <strong> Nombre: </strong> {elem.name} </div></>}
                     {elem.instrument&&<>
@@ -372,7 +381,10 @@ export default function Anadir(){
                     {elem.occupation&&<>
                         <div className={styles.summaryElementData}> <strong> Ocupación: </strong> {elem.occupation} </div></>}
                     {elem.age&&<>
-                        <div className={styles.summaryElementData}> <strong> Edad: </strong> {data.age} </div></>}
+                        <div className={styles.summaryElementData}> <strong> Edad: </strong> {elem.age} </div></>}
+                    <div className={styles.eliminateMemberBTN} onClick={()=>{
+                        eliminateMusician(i, aBandRegistry.bandMembers)
+                    }}> ELIMINAR </div>
                 </div>
             </>)
         return(
@@ -400,6 +412,7 @@ export default function Anadir(){
         )
     }
 
+// SEND TO BE.
     const submitData=()=>{
         return(
             <div 
@@ -419,7 +432,7 @@ export default function Anadir(){
     }
 
 
-console.log("Band Reg", aBandRegistry)
+// console.log("Band Reg", aBandRegistry)
     return(
         <>
             <div className={styles.addBandPage}>
