@@ -29,7 +29,7 @@ const testerFunct=()=>{
         <div className={styles.welcomeContainerGeneral}>
           
           <div className={styles.titleText}>
-            <div className={styles.blueTitle}> sonido </div>
+            <div className={styles.blueTitle}> sonidos </div>
             <div className={styles.redTitle}> de </div>
             <div className={styles.blueTitle}> quito </div>
           </div>

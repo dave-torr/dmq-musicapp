@@ -42,10 +42,10 @@ const eachBandDisplayer=(bands)=>{
                             {elem.bandMembers.length} Miembros </div>
                         </div>
                     <div className={styles.eachBandBTNS}> 
-                        <div className={styles.editBTN} 
+                        {/* <div className={styles.editBTN} 
                             onClick={()=>{
                                 setSelectedBand(elem)
-                            }}> Editar </div>
+                            }}> Editar </div> */}
                         <div className={styles.profileBTN} 
                             onClick={()=>{
                                 setSelectedBand(elem)

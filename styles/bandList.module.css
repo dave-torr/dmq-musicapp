@@ -89,11 +89,19 @@
     width: 50%;
     padding: 9px;
 }
+.editBTN:hover{
+    cursor: pointer;
+}
 .profileBTN{
     padding: 9px;
     width: 50%;
     color: white;
     background-color: crimson;
+    box-shadow: -5px -5px 0px blue;
+}
+
+.profileBTN:hover{
+    cursor: pointer;
 }
 
 .fullListBTN{
