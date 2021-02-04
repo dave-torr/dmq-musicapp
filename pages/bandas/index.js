@@ -1,5 +1,7 @@
 
 import { useEffect, useState } from "react"
+import { CircularProgress } from '@material-ui/core';
+
 import useBands from "./../../utils/bandFetching"
 
 import styles from "./../../styles/bandList.module.css"
@@ -59,7 +61,90 @@ const eachBandDisplayer=(bands)=>{
                 </div>
             </>
         )
+    } else {
+        return(
+            <>
+                <div style={{width:"100%", display: "flex", flexDirection:"column",  alignItems:"center"}}> 
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <CircularProgress  />
+                    <br></br>
+                    <br></br>
+                    Buscando Informacion
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    </div>
+            </>
+        )
     }
+}
+
+const bandProfile=(bandData)=>{
+    let eachBandMember=bandData.bandMembers.map((elem, i)=>
+        <>
+            <div style={{display:"flex", flexDirection:"column"}}>
+                <div>_______________________________ </div>
+                <strong> Integrante {i+1} </strong> 
+                {elem.name&&<>
+                    <div className={styles.summaryElementData}> <strong> Nombre: </strong> {elem.name} </div></>}
+                {elem.instrument&&<>
+                    <div className={styles.summaryElementData}> <strong> Instrumento: </strong> {elem.instrument} </div></>}
+                {elem.occupation&&<>
+                    <div className={styles.summaryElementData}> <strong> Ocupación: </strong> {elem.occupation} </div></>}
+                {elem.age&&<>
+                    <div className={styles.summaryElementData}> <strong> Edad: </strong> {elem.age} </div></>}
+            </div>
+        </>)
+    return(
+        <>
+            <div className={styles.fullListBTN} onClick={()=>{
+                setBandPageGenController("list");
+                setSelectedBand(null)
+            }}> Listado completo </div>
+            <div className={styles.bandProfileGenCont}>
+                <div className={styles.bandProfileName}> 
+                    {bandData.bandName} </div>
+                <div className={styles.bandProfileYear}> 
+                    est. {bandData.yearStarted} </div>
+                <div className={styles.bandProfileDataCont}> 
+                    <div className={styles.profileLocationDataCont}>
+                        <div style={{display:"flex", flexDirection:"column", height:"100%", justifyContent: "space-around"}}>
+                            <h3> Locacion </h3>
+                            {bandData.location.parroquia&&<>
+                                <div className={styles.summaryElementData}> <strong> Parroquia: </strong> {bandData.location.parroquia} </div></>}
+                            {bandData.location.barrio&&<>
+                                <div className={styles.summaryElementData}> <strong> Barrio: </strong> {bandData.location.barrio} </div></>}
+                            {bandData.location.detalleAdicional&&<>
+                                <div className={styles.summaryElementData}> <strong> Adicional: </strong> {bandData.location.detalleAdicional} </div></>}
+                        </div>                        
+                    </div>
+                    <div className={styles.profileDirectorDataCont}>
+                        <div style={{display:"flex", flexDirection:"column", height:"100%", justifyContent: "space-around"}}>
+                            <h3> Musico Mayor </h3>
+                            {bandData.musicoMayor.name&&<>
+                                <div className={styles.summaryElementData}> <strong> Nombre: </strong> {bandData.musicoMayor.name} </div></>}
+                            {bandData.musicoMayor.occupation&&<>
+                                <div className={styles.summaryElementData}> <strong> Ocupación: </strong> {bandData.musicoMayor.occupation} </div></>}
+                            {bandData.musicoMayor.yearsInRole&&<>
+                                <div className={styles.summaryElementData}> <strong> Años de director: </strong> {bandData.musicoMayor.yearsInRole} </div></>}
+                            {bandData.musicoMayor.age&&<>
+                                <div className={styles.summaryElementData}> <strong> Edad: </strong> {bandData.musicoMayor.age} </div></>}
+                        </div>                        
+
+                    </div>
+                </div>
+                <div className={styles.profileMemberDataCont}>
+                    <h3> Integrantes </h3>
+                    <div className={styles.eachBamdMemberCards}> 
+                        {eachBandMember}
+                    </div>
+                </div>
+            </div>
+        </>
+    )
 }
 
 console.log(selectedBand)
@@ -75,7 +160,7 @@ const generalBandListDisp=()=>{
             </>}
         {bandPageGenController==="profile"&&
             <>
-                Profile
+                {bandProfile(selectedBand)}
             </>}
         </div>
         </>

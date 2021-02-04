@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@material-ui/core": "^4.11.3",
     "connect-mongo": "^3.2.0",
     "mongodb": "^3.6.3",
     "next": "10.0.6",
