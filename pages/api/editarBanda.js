@@ -1,6 +1,6 @@
 import { ObjectID } from 'mongodb';
 import nextConnect from 'next-connect';
-import { connectToDatabase } from "../../../utils/mongodb";
+import { connectToDatabase } from "./../../utils/mongodb";
 
 const handler = nextConnect();
 
